@@ -1,4 +1,5 @@
 name: Generate SSL Certificates for Localhost
+
 on: [push]
 
 jobs:
@@ -6,14 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Generate self-signed certificates
         run: |
           openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout localhost.key -out localhost.crt -subj "/CN=localhost" -addext "subjectAltName=DNS:localhost"
-      
+
       - name: Upload certificates
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: localhost-certificates
           path: |
