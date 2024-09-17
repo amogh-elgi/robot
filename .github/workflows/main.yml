@@ -1,0 +1,25 @@
+name: Unzip Files
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Unzip the file
+        run: |
+          unzip robot.zip -d destination-directory
+      
+      - name: Commit unzipped content
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Action"
+          git add destination-directory
+          git commit -m "Unzipped content"
+          git push
