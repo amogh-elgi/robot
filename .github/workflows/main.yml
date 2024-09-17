@@ -14,7 +14,7 @@ jobs:
 
       - name: Unzip the file
         run: |
-          unzip robot.zip -d destination-directory
+          unzip robot.zip -d .
       
       - name: Commit unzipped content
         run: |
